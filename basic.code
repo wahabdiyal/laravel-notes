@@ -1,0 +1,11 @@
+laravel controller side code:
+
+Session::flash('message', 'This is a message!'); 
+Session::flash('alert-class', 'alert-danger'); 
+
+
+Then in your view:
+
+@if(Session::has('message'))
+<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+@endif
