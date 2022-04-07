@@ -9,3 +9,20 @@ Then in your view:
 @if(Session::has('message'))
 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
 @endif
+
+multi image upload:
+
+$request->merge(['small_description'=>htmlentities($request->small_description)]);
+       $request->merge(['description'=>htmlentities($request->description)]);
+       $productdetail=ProductDetial::create($request->except(['image_of_title']));
+
+        if ($productdetail) {
+            foreach($request->file('image_of_title') as $a){
+              $fileName = str_replace(' ', '', $a->getClientOriginalName());
+              $a->move(public_path('uploads'),$fileName);
+                $x[]=$fileName;
+
+       }
+       
+       
+
