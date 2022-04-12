@@ -12,6 +12,7 @@ Then in your view:
 
 multi image upload:
 
+encode html:
 $request->merge(['small_description'=>htmlentities($request->small_description)]);
        $request->merge(['description'=>htmlentities($request->description)]);
        $productdetail=ProductDetial::create($request->except(['image_of_title']));
@@ -23,6 +24,10 @@ $request->merge(['small_description'=>htmlentities($request->small_description)]
                 $x[]=$fileName;
 
        }
-       
+ view side important note: 
+ 
+ html decode coming from database
+ <?=html_entity_decode($blog->detail) ?>
+
        
 
