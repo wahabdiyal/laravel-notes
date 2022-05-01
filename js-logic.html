@@ -1,0 +1,94 @@
+
+
+
+
+<body>
+  
+  
+
+                        <div class="input-group">
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input type="number" value="0" id="changenum" placeholder="Amount To Charge" class="form-control">
+
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <label for="pastdueyes">Want to pay past dues?</label>
+                        </div>
+                        <div class="form-group">
+                            Yes <input type="radio"  name="interview" value="yes" id="pastdueyes">
+                        </div>
+                        <div class="form-group">
+                            No <input type="radio" checked value="no" name="interview" id="pastdueno">
+                        </div>
+
+                        <div class="input-group" id="pastduefield" style="display: none;">
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input value="0" type="number" id="pastduenum" placeholder="Past Dues" class="form-control">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="totaldue">Total</label>
+                            <input type="text" disabled name="charging_payment" class="form-control" id="totaldue"
+                                value="0">
+                        </div>
+
+</body>
+<script>
+
+    $(document).ready(function () {
+
+        $("#changenum").change(function() {
+           // alert( $("#changenum").val());
+            var a = parseFloat($("#changenum").val());
+            var b = 0;
+
+            if($('#pastdueno:checked').val() == 'yes'){
+               var b = parseFloat($("#pastduenum").val());
+            }
+
+            console.log(a);
+            console.log(b);
+                 $("#totaldue").val(a+b);
+       });
+       $("#pastduenum").change(function() {
+           // alert( $("#changenum").val());
+           var a = parseFloat($("#changenum").val());
+
+            var b = parseFloat($("#pastduenum").val());
+            console.log(a);
+            console.log(b);
+                 $("#totaldue").val(a+b);
+       });
+
+        $("#pastdueyes").click(function () {
+
+            var a = parseFloat($("#changenum").val());
+            var a = parseFloat($("#changenum").val());
+
+var b = parseFloat($("#pastduenum").val());
+console.log(a);
+console.log(b);
+     $("#totaldue").val(a+b);
+            $("#pastduefield").fadeIn();
+
+        });
+        $("#pastdueno").click(function () {
+            // $('#pastfield').val('');
+            var a = parseFloat($("#changenum").val());
+                    $("#totaldue").val(a);
+            $("#pastduefield").fadeOut();
+
+        });
+
+
+  });
+</script>
