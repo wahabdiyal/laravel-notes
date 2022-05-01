@@ -29,5 +29,9 @@ $request->merge(['small_description'=>htmlentities($request->small_description)]
  html decode coming from database
  <?=html_entity_decode($blog->detail) ?>
 
-       
+ 
+ html feild regexp:
+  <input type="text"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="YY" name="" class="form-control" maxlength="2" size="2" required>
+
+
 
