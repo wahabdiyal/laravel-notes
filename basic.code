@@ -1,5 +1,5 @@
 laravel controller side code:
-
+ return redirect()->back()->with('success', 'your message,here');  
 Session::flash('message', 'This is a message!'); 
 Session::flash('alert-class', 'alert-danger'); 
 
