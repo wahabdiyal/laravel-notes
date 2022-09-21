@@ -86,5 +86,22 @@ try {
 }
 
 
+///////////form submit jquery
+            <button class="btn btn-primary float-right" onclick="reqForm()">Request</button>
+
+@if (auth()->user()->user_request()->count()==0)
+<form id="request" action="{{url('config/user/request')}}" method="post">
+    @csrf
+    <input type="hidden" name="type" value="request">
+
+    </form>
+<script language="javascript" type="text/javascript">
+    function reqForm() {
+       $("#request").submit();
+    }
+</script>
+@endif
+
+
 
 
