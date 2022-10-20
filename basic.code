@@ -1,18 +1,21 @@
 laravel controller side code:
+<?php
+
  return redirect()->back()->with('success', 'your message,here');  
 Session::flash('message', 'This is a message!'); 
 Session::flash('alert-class', 'alert-danger'); 
 
 
-Then in your view:
+// Then in your view:
 
 @if(Session::has('message'))
 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
 @endif
 
-multi image upload:
+// multi image upload:
 
-encode html:
+// encode html:
+
 $request->merge(['small_description'=>htmlentities($request->small_description)]);
        $request->merge(['description'=>htmlentities($request->description)]);
        $productdetail=ProductDetial::create($request->except(['image_of_title']));
@@ -37,7 +40,7 @@ $request->merge(['small_description'=>htmlentities($request->small_description)]
 
 
 PHP core mail send on domain mail
-<?php
+ 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
