@@ -91,4 +91,16 @@ console.log(b);
 
 
   });
+  ////////good example ajax for understand explain
+    $('.prove').each(function() {
+            var $this = $(this);
+            $this.on("click", function() {
+                $("#test").text('Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d');
+                $('#myModal').modal('show');
+                alert($(this).data('reqid'));
+                request = $.ajax({
+        url: "{{route('admin.fetchData')}}",
+        type: "post",
+        data: {"reqid":$(this).data('reqid'),"id":$(this).data('id'),"_token": "{{ csrf_token() }}"}
 </script>
+
