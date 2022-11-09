@@ -105,6 +105,51 @@ try {
 </script>
 @endif
 
+/////////////////////////////////////////Time limitation in core php //////////////////
+<?php
+
+ 
+session_start();
+ 
+
+if(isset($_SESSION['ip']) ){
+    if($_SESSION['ip']== $_SERVER['REMOTE_ADDR'] || $_SESSION['mac']== exec('getmac') ){ 
+        $_SESSION['LAST_CALL'] = date("Y-m-d h:i:s");
+            if($_SESSION['count']==5){
+                if (isset($_SESSION['LAST_CALL'])) {
+                    $last = strtotime($_SESSION['LAST_CALL']);
+                    $curr = strtotime($_SESSION['first_call']);
+                    $sec =  abs($last - $curr);
+                    if ($sec <= 60) {
+                      $data = 'Rate Limit Exceeded'.$sec."mac and ip".$_SESSION['mac']."::::".$_SESSION['ip'];  // rate limit
+                      header('Content-Type: application/json');
+                      die (json_encode($data));        
+                    }else{
+
+                         
+                        session_destroy();
+                       
+                    }
+                  }
+                
+            }else{
+                $_SESSION['count']++;
+            }
+    }
+}
+  
+
+ 
+  $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+  $_SESSION['mac'] = exec('getmac');
+  if(!isset($_SESSION['first_call'])){
+    $_SESSION['count']=1;
+    $_SESSION['first_call'] = date("Y-m-d h:i:s");
+  }
+  // normal usage
+  $data = "Data Returned from API";
+  header('Content-Type: application/json');
+  die(json_encode($data)); 
 
 
 
